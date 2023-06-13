@@ -1,0 +1,378 @@
+Nama        : Juan Christopher Santoso
+NIM         : 13521116
+
+
+Bagian I
+
+==== No a. ====
+X adalah istri dari Vito
+maka Vito adalah suami dari seseorang
+
+Query : | ?- suami(vito,X).
+
+X = power
+
+
+==== No b. ====
+X adalah adik dari Elon Musk
+maka Elon Musk adalah kakak dari seseorang
+
+Query : | ?- kakak(elonmusk,X).
+
+X = patrick
+
+==== No c. ====
+X adalah cicit dari Gojo
+maka x adalah anak dari seseorang yang merupakan cucu dari Gojo
+
+Query : | ?- anak(X,Y), cucu(Y,gojo).
+
+X = anya
+Y = wesly ? 
+
+==== No d. ====
+X adalah paman atau bibi tertua dari Wesly
+
+Query : | ?- keponakan(wesly,X), \+ (keponakan(wesly,Y), usia(X,A), usia(Y,B),  A < B).
+
+X = vanrossum ? a
+
+==== No e. ====
+X adalah Pasangan dari Ipar Aqua
+maka X adalah pasangan dari seseorang dan orang tersebut merupakan saudara dari pasangan Aqua
+
+Query : | ?- menikah(X,Y), saudara(Y,Z), menikah(Z,aqua).
+
+X = vito
+Y = power
+Z = ave ? a
+
+==== No f. ====
+X adalah Cucu termuda dari Khelli
+maka X adalah cucu dari Khelli dan memiliki umur paling kecil
+
+Query : | ?- cucu(X, khelli), \+ (cucu(Y,khelli), usia(X, UsiaX), usia(Y,UsiaY), UsiaX > UsiaY).
+
+X = patrick ? a
+
+==== No g. ====
+X  adalah orang yang menjadi anak kedua di keluarganya
+maka X adalah anak dari seseorang, X adalah anak kedua bila memenuhi salah satu kondisi berikut
+1. X adalah kakak dari semua saudaranya kecuali Z yang merupakan kakak dari X sekaligus anak sulung
+2. X tidak memiliki saudara tengah ( kondisi X hanya 2 bersaudara atau X hanya satu satunya anak tengah)
+
+Query : | ?- anak(X,Y), pria(Y), \+anaksulung(X), ( (kakak(X,_), kakak(Z,X), anaksulung(Z) ) ; (\+( (saudara(X,W), \+anaksulung(W), \+anakbungsu(W)) )) ).
+
+X = bambang
+Y = gede
+Z = vanrossum ? a
+
+X = bambang
+Y = gede
+Z = vanrossum
+
+X = bambang
+Y = gede
+
+X = power
+Y = gojo
+
+X = patrick
+Y = ave
+
+
+==== No h. ====
+X adalah orang tua yang memiliki tepat dua anak
+X harus memiliki tepat dua anak, Y dan Z. Y adalah anak sulung dan Z adalah anak bungsu.
+Y (atau Z) tidak boleh memiliki saudara yang bukan anak sulung atau anak bungsu (tidak boleh memiliki saudara anak tengah) atau tidak boleh tidak memiliki saudara (anak tunggal).
+
+Query : | ?- anak(Y,X), anak(Z,X), anaksulung(Y), anakbungsu(Z), \+((( saudara(Y,W), \+anakbungsu(W), \+anaksulung(W) ) ; ( \+saudara(_,Y) ))).
+
+X = gojo
+Y = ave
+Z = power ? a
+
+X = lovelace
+Y = ave
+Z = power
+
+X = ave
+Y = elonmusk
+Z = patrick
+
+X = aqua
+Y = elonmusk
+Z = patrick
+
+==== No i. ====
+X adalah orang yang punya mertua
+maka X sudah menikah dengan seseorang, dan pasangan tersebut merupakan anak dari seseorang (boleh pria atau wanita)
+
+Query : | ?- menikah(X,Y), anak(Y,Z).
+
+
+X = vito
+Y = power
+Z = gojo ? a
+
+X = vito
+Y = power
+Z = lovelace
+
+X = power
+Y = vito
+Z = gede
+
+X = power
+Y = vito
+Z = indah
+
+X = ave
+Y = aqua
+Z = khelli
+
+X = ave
+Y = aqua
+Z = vonneumann
+
+X = aqua
+Y = ave
+Z = gojo
+
+X = aqua
+Y = ave
+Z = lovelace
+
+X = wulandari
+Y = wesly
+Z = vito
+
+X = wulandari
+Y = wesly
+Z = power
+
+==== No j. ====
+X adalah wanita yang punya lebih dari 1 anak
+maka X adalah wanita yang memiliki anak dan anak tersebut memiliki saudara
+
+Query : | ?- wanita(X), anak(Y,X), saudara(Y,_).
+
+X = indah
+Y = vanrossum ? a
+
+X = indah
+Y = vanrossum
+
+X = indah
+Y = bambang
+
+X = indah
+Y = bambang
+
+X = indah
+Y = vito
+
+X = indah
+Y = vito
+
+X = lovelace
+Y = power
+
+X = lovelace
+Y = ave
+
+X = aqua
+Y = elonmusk
+
+X = aqua
+Y = patrick
+
+==== No k. ====
+X adalah orang yang belum pernah melahirkan ketika berusia di atas 20 tahun
+maka X adalah wanita yang bila umurnya dikurangi dengan umur anak sulung, lebih dari 20. (sampai umur 20, ia belum pernah melahirkan)
+
+Query : | ?- (wanita(X), anak(Y,X), anaksulung(Y), usia(X, UsiaX), usia(Y, UsiaY), UsiaX-UsiaY > 20); (wanita(X), \+anak(_,X)).
+
+UsiaX = 92
+UsiaY = 65
+X = indah
+Y = vanrossum ? a
+
+UsiaX = 92
+UsiaY = 65
+X = indah
+Y = vanrossum
+
+UsiaX = 79
+UsiaY = 54
+X = lovelace
+Y = ave
+
+UsiaX = 89
+UsiaY = 50
+X = khelli
+Y = aqua
+
+UsiaX = 50
+UsiaY = 26
+X = power
+Y = wesly
+
+UsiaX = 50
+UsiaY = 28
+X = aqua
+Y = elonmusk
+
+X = anya
+
+
+==== No l. ====
+X adalah keturunan dari Gede yang umurnya tidak lebih kecil dari 25 tahun
+maka X adalah setiap keturunan dari Gede dan memiliki umur lebih besar atau sama dengan 25
+
+Query : | ?- keturunan(X,gede), usia(X, UsiaX), UsiaX >= 25.
+
+UsiaX = 65
+X = vanrossum ? a
+
+UsiaX = 60
+X = bambang
+
+UsiaX = 56
+X = vito
+
+UsiaX = 26
+X = wesly
+
+
+
+Bagian III
+
+==== Bagian A - Statistik List - Min ====
+
+Query : min([9, -8, -7, 11, -10], Min).
+
+Min = -10
+
+Query : min([11], Min).
+
+Min = 11 ? a
+
+Query : min([0,1,2,3,-1,5,6,4], Min).
+
+Min = -1
+
+==== Bagian A - Statistik List - Max ====
+
+Query : max([9, -8, -7, 11, -10], Max).
+
+Max = 11
+
+Query : max([-8], Max).
+
+Max = -8 ? a
+
+Query : max([1,2,3,-8], Max).
+
+Max = 3
+
+==== Bagian A - Statistik List - Range ====
+
+Query : range([9, -8, -7, 11, -10], Range).
+
+Range = 21
+
+Query : range([9, -8], Range).
+
+Range = 17 ? a
+
+Query : range([10], Range).
+
+Range = 0 ? a
+
+Query : range([10,10], Range).
+
+Range = 0
+
+==== Bagian A - Statistik List - Count ====
+
+Query : count([9, -8, -7, 11, -10], Count).
+
+Count = 5
+
+Query : count([9], Count).
+
+Count = 1
+
+Query : count([9,0,19], Count).
+
+Count = 3
+
+==== Bagian A - Statistik List - Sum ====
+
+Query : sum([9, -8, -7, 11, -10], Sum).
+
+Sum = -5
+
+Query : sum([9], Sum).
+
+Sum = 9
+
+Query : sum([], Sum).
+
+Sum = 0
+
+==== Bagian B - List and Queue Manipulation - Get Index ====
+
+Query : getIndex([1,2,5,-2,1,-4,-7], -2, Index).
+
+Index = 4
+
+Query : getIndex([1,-2,5,-2,1,-4,-7], -2, Index).
+
+Index = 2
+
+Query : getIndex([3,2,0,-2,1,-4,-7], 3, Index).
+
+Index = 1 ? a
+
+==== Bagian B - List and Queue Manipulation - Swap ====
+
+Query : swap([5,6,7,8], 5,5, Result).
+
+Result = [5,6,7,8]
+
+Query : swap([5,6,7,8], 1, 1, Result).
+
+Result = [5,6,7,8]
+
+Query : swap([5,6,7,8], 4, 1, Result).
+
+Result = [8,6,7,5]
+
+==== Bagian B - List and Queue Manipulation - Split List ====
+
+Query : splitList([1,2,3,4,5,6], Ganjil, Genap).
+
+Ganjil = [1,3,5]
+Genap = [2,4,6]
+
+Query : splitList([1], Ganjil, Genap).
+
+Ganjil = [1]
+Genap = []
+
+Query : splitList([2], Ganjil, Genap).
+
+Ganjil = []
+Genap = [2]
+
+Query : splitList([], Ganjil, Genap).
+
+Ganjil = []
+Genap = []
+
+Query : splitList([1,3,5,7], Ganjil, Genap).
+
+Ganjil = [1,3,5,7]
+Genap = []
